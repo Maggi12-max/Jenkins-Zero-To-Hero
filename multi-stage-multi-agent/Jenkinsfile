@@ -3,18 +3,24 @@ pipeline {
   stages {
     stage('Back-end') {
       agent {
-        docker { image 'maven:3.8.1-adoptopenjdk-11' }
+        docker { 
+          image 'maven:3.8.1-adoptopenjdk-11'
+          args '-v volume:/app/data'
+        }
       }
       steps {
-        sh 'mvn --version'
+         sh 'mvn --version > /app/data/output.txt'
       }
     }
     stage('Front-end') {
       agent {
-        docker { image 'node:16-alpine' }
+        docker { 
+          image 'node:16-alpine
+          args '-v volume:/app/data'
+        }
       }
       steps {
-        sh 'node --version'
+        sh 'node --version > /app/data/output.txt'
       }
     }
   }
