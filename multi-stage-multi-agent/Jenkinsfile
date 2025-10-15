@@ -9,7 +9,7 @@ pipeline {
         }
       }
       steps {
-         sh 'mvn --version > /app/data/output.txt'
+         sh 'mvn --version >> /app/data/output.txt'
       }
     }
     stage('Front-end') {
@@ -20,7 +20,7 @@ pipeline {
         }
       }
       steps {
-        sh 'node --version > /app/data/output.txt'
+        sh 'node --version >> /app/data/output.txt'
       }
     }
   }
