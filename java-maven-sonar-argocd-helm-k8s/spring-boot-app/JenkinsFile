@@ -56,12 +56,12 @@ pipeline {
         }
         steps {
           script {
-            sh 'apk add --no-cache git'
-            sh 'rm -rf ${GIT_REPO_NAME}'
-            sh 'git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git'
-            sh 'cd ${GIT_REPO_NAME}'
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-            sh '''
+            sh """
+              apk add --no-cache git
+              rm -rf ${GIT_REPO_NAME}
+              git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+              cd ${GIT_REPO_NAME}
               git config user.email "manushayerra01@gmail.com"
               git config user.name "Maggi12-max"
               BUILD_NUMBER=${BUILD_NUMBER}
@@ -69,8 +69,9 @@ pipeline {
               git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
               git commit -m "Update deployment image to version ${BUILD_NUMBER}"
               git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-            '''
+            """
             }
+           
         }
     }
   }
