@@ -57,6 +57,7 @@ pipeline {
         steps {
           script {
             sh 'apk add --no-cache git'
+            sh 'rm -rf ${GIT_REPO_NAME}'
             sh 'git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git'
             sh 'cd ${GIT_REPO_NAME}'
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
