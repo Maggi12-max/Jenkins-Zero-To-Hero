@@ -1,7 +1,4 @@
-FROM python:3
-
-RUN python -m ensurepip --upgrade
-RUN pip install setuptools==65.5.0  # brings distutils back
+FROM python:3.11-bullseye
 RUN pip install django==3.2
 
 WORKDIR /app
