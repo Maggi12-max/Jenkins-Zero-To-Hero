@@ -19,7 +19,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t maggi19/cicd:${BUILD_NUMBER} -f python-jenkins-argocd-k8s/todos/Dockerfile .
+                    docker build -t maggi19/cicd:${BUILD_NUMBER} -f python-jenkins-argocd-k8s/Dockerfile .
                     '''
                 }
             }
