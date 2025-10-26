@@ -1,10 +1,1 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: todo-app
-spec:
-  containers:
-  - name: todo-app
-    image: maggi19/cicd:v1
-    ports:
-    - containerPort: 8000
+
