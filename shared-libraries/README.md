@@ -1,7 +1,7 @@
 # Shared Libraries
 
 In Jenkins, a shared library is a way to store commonly used code(reusable code), such as scripts or functions, that can be used by different 
-Jenkins pipelines. 
+Jenkins pipelines.   
 
 Instead of writing the same code again and again in multiple pipelines, you can create a shared library and use it in all the pipelines
 that need it. This can make your code more organized and easier to maintain. 
