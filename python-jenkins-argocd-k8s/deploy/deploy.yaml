@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: todo
-        image: maggi19/cicd:40
+        image: maggi19/cicd:42
         ports:
         - containerPort: 8000
