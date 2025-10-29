@@ -16,19 +16,7 @@ pipeline {
                 git branch: 'main', credentialsId: 'Github', url: 'https://github.com/Maggi12-max/Jenkins-Zero-To-Hero.git'
            }
         }
-        stage('Check branch') {
-          steps {
-            script {
-              def branchName = env.GIT_BRANCH ?: sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-              echo "Building branch: ${branchName}"
-              if(branchName != 'main') {
-                echo "Branch is not main, skipping build to prevent infinite loop."
-                currentBuild.result = 'SUCCESS'
-                error("Aborting build for branch ${branchName}")
-      }
-    }
-  }
-}
+      
 
         stage('Build Docker'){
             steps{
