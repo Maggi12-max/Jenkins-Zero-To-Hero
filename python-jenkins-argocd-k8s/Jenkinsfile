@@ -43,7 +43,7 @@ pipeline {
             steps {
                 git credentialsId: 'Github', 
                 url: 'https://github.com/Maggi12-max/Jenkins-Zero-To-Hero.git',
-                branch: 'main'
+                branch: 'Deploy'
             }
         }
         
