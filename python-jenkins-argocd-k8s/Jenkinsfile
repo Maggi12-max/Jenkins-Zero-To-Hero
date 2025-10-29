@@ -7,6 +7,15 @@ pipeline {
      triggers { githubPush() }
 
     stages {
+        
+    
+   
+        
+        stage('Checkout'){
+           steps {
+                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/Maggi12-max/Jenkins-Zero-To-Hero.git'
+           }
+        }
         stage('Check branch') {
           steps {
             script {
@@ -20,14 +29,6 @@ pipeline {
     }
   }
 }
-    
-   
-        
-        stage('Checkout'){
-           steps {
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/Maggi12-max/Jenkins-Zero-To-Hero.git'
-           }
-        }
 
         stage('Build Docker'){
             steps{
