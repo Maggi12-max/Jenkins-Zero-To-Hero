@@ -4,6 +4,21 @@ pipeline {
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
+     triggers { githubPush() }
+
+    stages {
+        stage('Validate Branch') {
+            steps {
+                script {
+                    def branch = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
+                    if (branch == 'deploy') {
+                        echo "Branch 'deploy' detected — skipping to prevent infinite loop."
+                        currentBuild.result = 'SUCCESS'
+                        return
+                    }
+                }
+            }
+        }
     
     stages {
         
