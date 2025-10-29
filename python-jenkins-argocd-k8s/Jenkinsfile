@@ -7,18 +7,19 @@ pipeline {
      triggers { githubPush() }
 
     stages {
-        stage('Validate Branch') {
-            steps {
-                script {
-                    def branch = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                    if (branch == 'deploy') {
-                        echo "Branch 'deploy' detected — skipping to prevent infinite loop."
-                        currentBuild.result = 'SUCCESS'
-                        return
-                    }
-                }
-            }
-        }
+        stage('Check branch') {
+          steps {
+            script {
+              def branchName = env.GIT_BRANCH ?: sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+              echo "Building branch: ${branchName}"
+              if(branchName != 'main') {
+                echo "Branch is not main, skipping build to prevent infinite loop."
+                currentBuild.result = 'SUCCESS'
+                error("Aborting build for branch ${branchName}")
+      }
+    }
+  }
+}
     
    
         
