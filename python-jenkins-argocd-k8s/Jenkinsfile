@@ -52,7 +52,7 @@ pipeline {
             }
         }
         
-        stage('Update K8S manifest & push to Repo'){
+        /*stage('Update K8S manifest & push to Repo'){
             steps {
                 script{
                     withCredentials([string(credentialsId: 'Git', variable: 'GITHUB_TOKEN')]) {
@@ -67,7 +67,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
     }
 }
 
